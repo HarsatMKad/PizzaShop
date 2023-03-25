@@ -8,28 +8,26 @@ using System.IO;
 namespace ConsoleApp1
 {
   abstract class Pizza
-  {
-    int CountIngridient1;
-    int CountIngridient2;
-    int CountIngridient3;
-  }
-
+  { }
   class PizzaBananas : Pizza
   {
     string Name = "Bananas";
     int Size;
-    int CountIngridient4;
-    int CountIngridient5;
-    int CountIngridient6;
+    string Ingridients;
   }
 
   class ChickenPesto : Pizza
   {
     string Name = "Курица с соусом песто";
     int Size;
-    int CountIngridient4;
-    int CountIngridient7;
-    int CountIngridient8;
+    string Ingridients;
+  }
+
+  class HamAndMushrooms : Pizza
+  {
+    string Name = "Ветчина и грибы";
+    int Size;
+    string Ingridients;
   }
 
   abstract class Pizzeria
@@ -42,8 +40,25 @@ namespace ConsoleApp1
     public override Pizza FactoryMethod() 
     {
       Pizza a = new ChickenPesto();
-      
       return a; 
+    }
+  }
+
+  class Beercity : Pizzeria
+  {
+    public override Pizza FactoryMethod()
+    {
+      Pizza a = new PizzaBananas();
+      return a;
+    }
+  }
+
+  class Mnogopizza : Pizzeria
+  {
+    public override Pizza FactoryMethod()
+    {
+      Pizza a = new HamAndMushrooms();
+      return a;
     }
   }
 
