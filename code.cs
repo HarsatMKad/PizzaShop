@@ -5,70 +5,47 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace ConsoleApp1
+namespace Program
 {
-  abstract class Pizza
-  { }
-  class PizzaBananas : Pizza
-  {
-    string Name = "Bananas";
-    int Size;
-    string Ingridients;
-  }
-
-  class ChickenPesto : Pizza
-  {
-    string Name = "Курица с соусом песто";
-    int Size;
-    string Ingridients;
-  }
-
-  class HamAndMushrooms : Pizza
-  {
-    string Name = "Ветчина и грибы";
-    int Size;
-    string Ingridients;
-  }
-
-  abstract class Pizzeria
-  {
-    public abstract Pizza FactoryMethod();
-  }
-
-  class Pizzzashop : Pizzeria
-  {
-    public override Pizza FactoryMethod() 
-    {
-      Pizza a = new ChickenPesto();
-      return a; 
-    }
-  }
-
-  class Beercity : Pizzeria
-  {
-    public override Pizza FactoryMethod()
-    {
-      Pizza a = new PizzaBananas();
-      return a;
-    }
-  }
-
-  class Mnogopizza : Pizzeria
-  {
-    public override Pizza FactoryMethod()
-    {
-      Pizza a = new HamAndMushrooms();
-      return a;
-    }
-  }
-
   class Program
   {
     static void Main(string[] args)
     {
-      Pizzeria dev = new Pizzzashop();
-      Pizza pi = dev.FactoryMethod();
+      string PizzaName;
+      int PizzaSize;
 
+      Console.WriteLine("                   Приветствую вас в магазине пиццы");
+      Console.WriteLine("              Выберите пиццу, которую вы хотите заказать:");
+      Console.WriteLine("____________________________________________________________________________");
+      Console.WriteLine("");
+      Console.WriteLine("Маргарита(1)| Охотничья(2)| Ветчина и грибы(3)| Филадельфия(4)| 4 Сезона(5)");
+      Console.WriteLine("            |             |                   |               |            ");
+      Console.WriteLine("            |             |                   |               |            ");
+      Console.WriteLine("____________________________________________________________________________");
+      Console.WriteLine("");
+      PizzaName = Convert.ToString(Console.ReadLine());
+      Console.WriteLine("");
+
+      Console.WriteLine("Укажите размер пиццы:");
+      Console.WriteLine("______________________________________________");
+      Console.WriteLine("");
+      Console.WriteLine("Малений(1)| Средний(2)| Большой(3)| Экстра(4)");
+      Console.WriteLine("______________________________________________");
+      Console.WriteLine("");
+      PizzaSize = Convert.ToInt32(Console.ReadLine());
+      Console.WriteLine("");
+
+      if (PizzaName == "1")
+      {
+        Creators.Creator Creator = new Creators.MargaritaCreator();
+        PizzaTypes.Pizza pizza = Creator.FactoryMethod(PizzaSize);
+
+        Console.WriteLine("Ваша пицца готова:");
+        Console.WriteLine("");
+        Console.WriteLine("Ингридиенты:" + pizza.OutputIngredient());
+        Console.WriteLine("Размер: " + PizzaSize * 10);
+        Console.WriteLine("Стоимость:" + PizzaSize * 149);
+      }
       Console.ReadKey();
     }
   }
