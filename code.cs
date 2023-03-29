@@ -11,18 +11,10 @@ namespace Program
   {
     static void Main(string[] args)
     {
-      int PizzaName, PizzaSize;
+      int PizzaName = 0, PizzaSize;
       bool key = true;
 
-      Console.WriteLine("                   Приветствую вас в магазине пиццы");
-      Console.WriteLine("              Выберите пиццу, которую вы хотите заказать:");
-      Console.WriteLine("____________________________________________________________________________");
-      Console.WriteLine("");
-      Console.WriteLine("Маргарита(1)| Охотничья(2)| Ветчина и грибы(3)| Филадельфия(4)| 4 Сезона(5)");
-      Console.WriteLine("            |             |                   |               |            ");
-      Console.WriteLine("            |             |                   |               |            ");
-      Console.WriteLine("____________________________________________________________________________");
-      Console.WriteLine("");
+      Singleton.Singleton.Instance.PizzaTypesInterface();
 
       while (key)
       {
@@ -42,34 +34,21 @@ namespace Program
         }
       }
 
-      Console.WriteLine("");
+      Singleton.Singleton.Instance.PizzaSizeInterface();
 
-      Console.WriteLine("Укажите размер пиццы:");
-      Console.WriteLine("______________________________________________");
-      Console.WriteLine("");
-      Console.WriteLine("Малений(1)| Средний(2)| Большой(3)| Экстра(4)");
-      Console.WriteLine("______________________________________________");
-      Console.WriteLine("");
       key = true;
-
       while (key) 
       {
         key = false;
         try
-        {
+        { 
           PizzaSize = Convert.ToInt32(Console.ReadLine());
           if(PizzaSize < 1 || PizzaSize > 4)
           {
             throw new Exception("Такого размера нет");
           }
-            Creators.Creator Creator = new Creators.MargaritaCreator();
-            PizzaTypes.Pizza pizza = Creator.FactoryMethod(PizzaSize);
-
-            Console.WriteLine("");
-            Console.WriteLine("Ваша пицца готова:");
-            Console.WriteLine("Ингридиенты:" + pizza.OutputIngredient());
-            Console.WriteLine("Размер: " + PizzaSize * 10);
-            Console.WriteLine("Стоимость:" + PizzaSize * 149);
+          PizzaTypes.Pizza Pizza = Singleton.Singleton.Instance.CreatePizza(PizzaSize * 10, PizzaName);
+          Singleton.Singleton.Instance.ShowPizza(Pizza);
         }
         catch (Exception e)
         {
@@ -78,6 +57,7 @@ namespace Program
         }
       }
       Console.ReadKey();
+
     }
   }
 }
