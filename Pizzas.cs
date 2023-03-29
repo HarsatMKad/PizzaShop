@@ -6,9 +6,19 @@ using System.Threading.Tasks;
 
 namespace PizzaTypes
 {
-  abstract class Pizza
+  abstract public class Pizza
   {
-    public virtual string OutputIngredient()
+    public virtual string ShowIngredient()
+    {
+      return "";
+    }
+
+    public virtual int OutputSize()
+    {
+      return 0;
+    }
+
+    public virtual string OutputName()
     {
       return "";
     }
@@ -26,7 +36,7 @@ namespace PizzaTypes
       this.Ingridients = Ingredients;
     }
 
-    public override string OutputIngredient()
+    public override string ShowIngredient()
     {
       string NoteIngridients = "";
       for (int IngredientNumber = 0; IngredientNumber < Ingridients.Count; ++IngredientNumber)
@@ -34,6 +44,16 @@ namespace PizzaTypes
         NoteIngridients += Ingridients[IngredientNumber] + " ";
       }
       return NoteIngridients;
+    }
+
+    public override int OutputSize()
+    {
+      return Size;
+    }
+
+    public override string OutputName()
+    {
+      return Name;
     }
   }
 
@@ -50,7 +70,7 @@ namespace PizzaTypes
       this.Ingridients = Ingredients;
     }
 
-    public override string OutputIngredient()
+    public override string ShowIngredient()
     {
       string NoteIngridients = "";
       for (int IngredientNumber = 0; IngredientNumber < Ingridients.Count; ++IngredientNumber)
@@ -58,6 +78,16 @@ namespace PizzaTypes
         NoteIngridients += Ingridients[IngredientNumber] + " ";
       }
       return NoteIngridients;
+    }
+
+    public override int OutputSize()
+    {
+      return Size;
+    }
+
+    public override string OutputName()
+    {
+      return Name;
     }
   }
 
@@ -74,7 +104,7 @@ namespace PizzaTypes
       this.Ingridients = Ingredients;
     }
 
-    public override string OutputIngredient()
+    public override string ShowIngredient()
     {
       string NoteIngridients = "";
       for (int IngredientNumber = 0; IngredientNumber < Ingridients.Count; ++IngredientNumber)
@@ -82,6 +112,16 @@ namespace PizzaTypes
         NoteIngridients += Ingridients[IngredientNumber] + " ";
       }
       return NoteIngridients;
+    }
+
+    public override int OutputSize()
+    {
+      return Size;
+    }
+
+    public override string OutputName()
+    {
+      return Name;
     }
   }
 
@@ -98,7 +138,7 @@ namespace PizzaTypes
       this.Ingridients = Ingredients;
     }
 
-    public override string OutputIngredient()
+    public override string ShowIngredient()
     {
       string NoteIngridients = "";
       for (int IngredientNumber = 0; IngredientNumber < Ingridients.Count; ++IngredientNumber)
@@ -106,6 +146,16 @@ namespace PizzaTypes
         NoteIngridients += Ingridients[IngredientNumber] + " ";
       }
       return NoteIngridients;
+    }
+
+    public override int OutputSize()
+    {
+      return Size;
+    }
+
+    public override string OutputName()
+    {
+      return Name;
     }
   }
 
@@ -122,7 +172,7 @@ namespace PizzaTypes
       this.Ingridients = Ingredients;
     }
 
-    public override string OutputIngredient()
+    public override string ShowIngredient()
     {
       string NoteIngridients = "";
       for (int IngredientNumber = 0; IngredientNumber < Ingridients.Count; ++IngredientNumber)
@@ -130,6 +180,15 @@ namespace PizzaTypes
         NoteIngridients += Ingridients[IngredientNumber] + " ";
       }
       return NoteIngridients;
+    }
+    public override int OutputSize()
+    {
+      return Size;
+    }
+
+    public override string OutputName()
+    {
+      return Name;
     }
   }
 }
