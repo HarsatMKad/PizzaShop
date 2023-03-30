@@ -11,42 +11,53 @@ namespace Program
   {
     static void Main(string[] args)
     {
-      string PizzaName;
-      int PizzaSize;
+      int PizzaName = 0, PizzaSize;
+      bool key = true;
 
-      Console.WriteLine("                   Приветствую вас в магазине пиццы");
-      Console.WriteLine("              Выберите пиццу, которую вы хотите заказать:");
-      Console.WriteLine("____________________________________________________________________________");
-      Console.WriteLine("");
-      Console.WriteLine("Маргарита(1)| Охотничья(2)| Ветчина и грибы(3)| Филадельфия(4)| 4 Сезона(5)");
-      Console.WriteLine("            |             |                   |               |            ");
-      Console.WriteLine("            |             |                   |               |            ");
-      Console.WriteLine("____________________________________________________________________________");
-      Console.WriteLine("");
-      PizzaName = Convert.ToString(Console.ReadLine());
-      Console.WriteLine("");
+      Singleton.Singleton.Instance.PizzaTypesInterface();
 
-      Console.WriteLine("Укажите размер пиццы:");
-      Console.WriteLine("______________________________________________");
-      Console.WriteLine("");
-      Console.WriteLine("Малений(1)| Средний(2)| Большой(3)| Экстра(4)");
-      Console.WriteLine("______________________________________________");
-      Console.WriteLine("");
-      PizzaSize = Convert.ToInt32(Console.ReadLine());
-      Console.WriteLine("");
-
-      if (PizzaName == "1")
+      while (key)
       {
-        Creators.Creator Creator = new Creators.MargaritaCreator();
-        PizzaTypes.Pizza pizza = Creator.FactoryMethod(PizzaSize);
+        key = false;
+        try
+        {
+          PizzaName = Convert.ToInt32(Console.ReadLine());
+          if (PizzaName < 1 || PizzaName > 15)
+          {
+            throw new Exception("Такой пиццы нет");
+          }
+        }
+        catch(Exception exception)
+        {
+          Console.WriteLine($"Ошибка: {exception.Message}");
+          key = true;
+        }
+      }
 
-        Console.WriteLine("Ваша пицца готова:");
-        Console.WriteLine("");
-        Console.WriteLine("Ингридиенты:" + pizza.OutputIngredient());
-        Console.WriteLine("Размер: " + PizzaSize * 10);
-        Console.WriteLine("Стоимость:" + PizzaSize * 149);
+      Singleton.Singleton.Instance.PizzaSizeInterface();
+
+      key = true;
+      while (key) 
+      {
+        key = false;
+        try
+        { 
+          PizzaSize = Convert.ToInt32(Console.ReadLine());
+          if(PizzaSize < 1 || PizzaSize > 4)
+          {
+            throw new Exception("Такого размера нет");
+          }
+          PizzaTypes.Pizza Pizza = Singleton.Singleton.Instance.CreatePizza(PizzaSize * 10, PizzaName);
+          Singleton.Singleton.Instance.ShowPizza(Pizza);
+        }
+        catch (Exception exception)
+        {
+          Console.WriteLine($"Ошибка: {exception.Message}");
+          key = true;
+        }
       }
       Console.ReadKey();
+
     }
   }
 }
