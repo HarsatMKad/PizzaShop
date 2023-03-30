@@ -27,9 +27,9 @@ namespace Program
             throw new Exception("Такой пиццы нет");
           }
         }
-        catch(Exception e)
+        catch(Exception exception)
         {
-          Console.WriteLine($"Ошибка: {e.Message}");
+          Console.WriteLine($"Ошибка: {exception.Message}");
           key = true;
         }
       }
@@ -50,9 +50,9 @@ namespace Program
           PizzaTypes.Pizza Pizza = Singleton.Singleton.Instance.CreatePizza(PizzaSize * 10, PizzaName);
           Singleton.Singleton.Instance.ShowPizza(Pizza);
         }
-        catch (Exception e)
+        catch (Exception exception)
         {
-          Console.WriteLine($"Ошибка: {e.Message}");
+          Console.WriteLine($"Ошибка: {exception.Message}");
           key = true;
         }
       }
